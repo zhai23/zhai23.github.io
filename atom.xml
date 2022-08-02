@@ -1,0 +1,445 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>http://shuishan.cf</id>
+    <title>空汽薄荷-水杉</title>
+    <updated>2022-08-02T15:30:36.184Z</updated>
+    <generator>https://github.com/jpmonette/feed</generator>
+    <link rel="alternate" href="http://shuishan.cf"/>
+    <link rel="self" href="http://shuishan.cf/atom.xml"/>
+    <subtitle>温故而知新</subtitle>
+    <logo>http://shuishan.cf/images/avatar.png</logo>
+    <icon>http://shuishan.cf/favicon.ico</icon>
+    <rights>All rights reserved 2022, 空汽薄荷-水杉</rights>
+    <entry>
+        <title type="html"><![CDATA[模型ori中的gumo]]></title>
+        <id>http://shuishan.cf/post/mo-xing-ori-zhong-de-gumo/</id>
+        <link href="http://shuishan.cf/post/mo-xing-ori-zhong-de-gumo/">
+        </link>
+        <updated>2022-07-07T12:25:05.000Z</updated>
+        <content type="html"><![CDATA[<p>玩游戏时候看到的，这个角色动作很有趣<br>
+不过他的戏份真少，甚至是网上他的图也很少<br>
+做完顺便看了下怎么发sketchfab</p>
+<table>
+<thead>
+<tr>
+<th><div class="sketchfab-embed-wrapper"> <iframe title="ori gumo" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share height="500px" src="https://sketchfab.com/models/ceec7ea776264c0fa6034f6eaa3833d8/embed?autostart=1&annotations_visible=1&annotation=1&ui_hint=0&ui_theme=dark"> </iframe> </div></th>
+</tr>
+</thead>
+</table>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[命令激活windows]]></title>
+        <id>http://shuishan.cf/post/kms03k/</id>
+        <link href="http://shuishan.cf/post/kms03k/">
+        </link>
+        <updated>2022-07-01T19:03:03.000Z</updated>
+        <content type="html"><![CDATA[<h2 id="命令激活windows">命令激活windows</h2>
+<h4 id="kms服务器地址">kms服务器地址</h4>
+<pre><code class="language-shell">kms.03k.org
+</code></pre>
+<h4 id="️点击检测kms服务器是否正常"><a href="https://03k.org/go/kmscheck.php">🗝️点击检测KMS服务器是否正常</a></h4>
+<h4 id="激活windows">激活windows</h4>
+<h5 id="修改密钥服务器地址">修改密钥服务器地址</h5>
+<p>右键开始按钮选择  <code>终端(管理员)</code></p>
+<p>输入代码回车运行</p>
+<pre><code class="language-shell">slmgr /skms kms.03k.org
+</code></pre>
+<figure data-type="image" tabindex="1"><img src="https://03k.org/wp-content/uploads/2015/11/skms.png" alt="img" loading="lazy"></figure>
+<h5 id="查看系统版本">查看系统版本</h5>
+<p>输入代码回车运行</p>
+<pre><code class="language-shell">wmic os get caption
+</code></pre>
+<p>他会返回比如</p>
+<pre><code class="language-shell">Caption
+Microsoft Windows 11 Pro for Workstations
+</code></pre>
+<p>就是<code>Windows 11 Pro for Workstations</code>也就是Windows 11 专业工作站版</p>
+<h5 id="查系统key">查系统key</h5>
+<p>点击连接查找对应系统的key</p>
+<p><em><code>Server/Windows</code></em> <a href="https://docs.microsoft.com/zh-cn/windows-server/get-started/kmsclientkeys">https://docs.microsoft.com/zh-cn/windows-server/get-started/kmsclientkeys</a></p>
+<h5 id="安装key">安装key</h5>
+<pre><code class="language-shell">slmgr /ipk xxxxx-xxxxx-xxxxx-xxxxx
+</code></pre>
+<p>还可以去系统设置下面点击下面的激活提示来输入key激活</p>
+<p>安装完成后一般就会自动激活，如果没有输入以下代码激活</p>
+<pre><code class="language-shell">slmgr /ato
+</code></pre>
+<figure data-type="image" tabindex="2"><img src="https://03k.org/wp-content/uploads/2015/11/slmgr-ato.png" alt="slmgr-ato" loading="lazy"></figure>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Python中文乱码]]></title>
+        <id>http://shuishan.cf/post/pyzhcn/</id>
+        <link href="http://shuishan.cf/post/pyzhcn/">
+        </link>
+        <updated>2022-07-01T16:00:00.000Z</updated>
+        <content type="html"><![CDATA[<h3 id="python中文乱码">Python中文乱码</h3>
+<p>曾几何时 Python 中文总会出现奇奇怪怪的问题，每次出现中文乱码都要去网上搜索答案。</p>
+<p>现在有的小伙伴为了躲避中文乱码的问题甚至代码中不使用中文，注释和提示都用英文，</p>
+<p>但这并不是解决问题，而是逃避问题。</p>
+<h4 id="乱码原因">乱码原因</h4>
+<p>一般来说乱码主要是因为编码问题，总会自动存成<code>ASCII</code>，而<code>ASCII</code>没有中文</p>
+<p>所以要存成<code>UTF-8</code>，，这是为传输而设计的编码，并使编码无国界，可以显示全世界的字符</p>
+<h4 id="注释">注释</h4>
+<p>可以在第一行书写注释声明，来告诉系统接下来要使用<code>UTF-8</code></p>
+<p>可以这样写</p>
+<pre><code class="language-python"># encoding:utf-8
+</code></pre>
+<p>哎或者这样写</p>
+<pre><code class="language-python"># -*- coding: UTF-8 -*-
+</code></pre>
+<p>虽然是注释但是系统会明白的</p>
+<h4 id="用-unicode-表示">用 unicode 表示</h4>
+<p>只要像这样在中文前面加上个小<code>u</code>标记，后面的中文就用 <code>unicode</code> 存储了。</p>
+<pre><code class="language-python"># encoding:utf-8
+s = u&quot;中文&quot;
+print s
+</code></pre>
+<h4 id="文件和编码声明都为-gbk">文件和编码声明都为 GBK</h4>
+<p>就是把 <code>.py </code>文件改为 <code>GBK</code> 存储，而且编码声明也是<code>GBK</code></p>
+<pre><code class="language-python"># encoding:gbk
+s = &quot;中文&quot;
+print s
+print repr(s)
+</code></pre>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[bat基础用法]]></title>
+        <id>http://shuishan.cf/post/batjichu/</id>
+        <link href="http://shuishan.cf/post/batjichu/">
+        </link>
+        <updated>2022-06-30T16:00:00.000Z</updated>
+        <content type="html"><![CDATA[<h1 id="bat基础用法">bat基础用法</h1>
+<p>🎗️bat中文叫批处理，是windows原生可以运行的程序</p>
+<h4 id="文件复制">文件复制</h4>
+<pre><code class="language-shell">start cmd /k 代码 &amp; 代码
+#执行后面的代码部分并保留运行结束后的窗口
+#不加 start cmd /k 仍然可以运行结束后自动关闭窗口
+#  &amp;  连接两个代码分别运行
+
+chcp 65001
+#把格式解释为UTF-8 防止中文乱码
+#需要换行书写
+
+copy &quot;D:\ruan\阿达\&quot; &quot;.&quot;
+#复制 D:\ruan\阿达 路径下文件到bat脚本所在文件夹
+
+xcopy /y &quot;D:\ruan\阿达\&quot; &quot;.&quot;
+#同为复制但是功能更多 中间添加/y就是同意覆盖
+#但是这时候复制的只是该目录下的文件并不包括子目录
+
+xcopy /y &quot;D:\ruan\阿达\&quot; &quot;.&quot; /E
+#在结尾加上 /E 既可以复制所有子目录及文件
+#结尾还可以加上这些
+#/E–复制子文件夹，包括空文件夹。
+#/H-复制具有隐藏文件和系统文件属性的文件
+#/C-即使发生错误也继续复制
+#/I-如有疑问，假定目标位置是文件夹，比如，当目标位置不存在时
+#/T-复制子目录结构，但不复制文件
+#/E-复制子目录，包括任何空目录
+#/E–复制子文件夹，包括空文件夹
+#/H-复制具有隐藏文件和系统文件属性的文件
+#/K-复制属性。一般来说Xcopy会取消掉文件的“只读”属性
+#/O-复制文件所有权和ACL信息
+#/X-复制文件审核设置（隐含/O）
+
+C:\Users\%USERNAME%\
+# %USERNAME% 表示当前用户文件夹
+C:\Users\%USERNAME%\Desktop\
+#这就是通配符当前用户下的桌面路径
+C:\Users\%USERNAME%\Documents\
+#同理文档路径
+</code></pre>
+<h3 id="访问网址">访问网址</h3>
+<pre><code class="language-shell">explorer https://zhai23.github.io/
+#访问网址 https://zhai23.github.io/
+</code></pre>
+<h3 id="输出文字">输出文字</h3>
+<pre><code class="language-shell">echo hello world
+#输出文字 hello world
+</code></pre>
+<h3 id="打开文件夹或文件">打开文件夹或文件</h3>
+<p>打开文件夹</p>
+<pre><code class="language-shell">start D:\文件夹1
+</code></pre>
+<p>打开文件</p>
+<pre><code class="language-shell">start D:\文件夹1\test.txt
+</code></pre>
+<h3 id="删除文件">删除文件</h3>
+<p>删除当前目录下的test.txt文件</p>
+<pre><code class="language-shell">del test.txt
+</code></pre>
+<p>删除上级目录下的test.txt文件</p>
+<pre><code class="language-shell">del ..\test.txt
+</code></pre>
+<p>删除当前目录TEST文件夹下的所有.o文件</p>
+<pre><code class="language-shell">del .\TEST\*.o
+</code></pre>
+<h3 id="创建文件夹">创建文件夹</h3>
+<pre><code class="language-shell">md 文件夹1
+#在当前目录创建文件夹1
+md D:\文件夹1
+#在D:\目录创建文件夹1
+</code></pre>
+<h3 id="创建文件">创建文件</h3>
+<p>当前目录创建a.txt文件</p>
+<pre><code class="language-shell">cd.&gt;a.txt
+</code></pre>
+<h3 id="提取文件名">提取文件名</h3>
+<p>提取当前目录下扩展名为mp3的文件名，输出到<code>mp3文件名.txt</code></p>
+<pre><code class="language-shell">dir *.mp3 /b&gt;mp3文件名.txt
+</code></pre>
+<p>提取当前目录下的“深度睡眠”文件夹下的所有mp3文件名到文件</p>
+<pre><code class="language-shell">dir .\深度睡眠\*.mp3 /b&gt;mp3文件名.txt
+</code></pre>
+<p>提取当前目录下所有文件的文件名到a.txt</p>
+<pre><code class="language-shell">dir c:\*.* &gt;a.txt
+</code></pre>
+<h3 id="输出文件的绝对路径信息">输出文件的绝对路径信息</h3>
+<p>输出当前目录下mp3文件</p>
+<pre><code class="language-shell">dir *.mp3/b/s&gt;MP3文件信息.txt
+</code></pre>
+<p>MP3文件信息.txt的内容</p>
+<pre><code class="language-shell">D:\Music\深度睡眠\01.细水长流.mp3
+D:\Music\深度睡眠\02.花絮轻撒.mp3
+D:\Music\深度睡眠\03.爱的轮回.mp3
+D:\Music\深度睡眠\04.月影摇曳.mp3
+D:\Music\深度睡眠\05.逐梦.mp3
+D:\Music\深度睡眠\06.萦绕天使.mp3
+D:\Music\深度睡眠\07.夜宴.mp3
+</code></pre>
+<h3 id="执行另一个批处理文件">执行另一个批处理文件</h3>
+<pre><code class="language-shell">call c:\code\run.bat
+</code></pre>
+<h3 id="自动关机">自动关机</h3>
+<p>300s 后自动关机</p>
+<pre><code class="language-shell">shutdown -s -t 300
+</code></pre>
+<h3 id="隐藏文件夹">隐藏文件夹</h3>
+<pre><code class="language-shell">attrib +s +h D:\Secret
+</code></pre>
+<h3 id="取消隐藏文件夹">取消隐藏文件夹</h3>
+<pre><code class="language-shell">attrib -s -h D:\Secret
+</code></pre>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Hello Gridea]]></title>
+        <id>http://shuishan.cf/post/hello-gridea/</id>
+        <link href="http://shuishan.cf/post/hello-gridea/">
+        </link>
+        <updated>2022-06-29T16:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<p>👏  欢迎使用 <strong>Gridea</strong> ！<br>
+✍️  <strong>Gridea</strong> 一个静态博客写作客户端。你可以用它来记录你的生活、心情、知识、笔记、创意...</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>👏  欢迎使用 <strong>Gridea</strong> ！<br>
+✍️  <strong>Gridea</strong> 一个静态博客写作客户端。你可以用它来记录你的生活、心情、知识、笔记、创意...</p>
+<!-- more -->
+<h2 id="特性">特性👇</h2>
+<p>📝  你可以使用最酷的 <strong>Markdown</strong> 语法，进行快速创作</p>
+<p>🌉  你可以给文章配上精美的封面图和在文章任意位置插入图片</p>
+<p>🏷️  你可以对文章进行标签分组</p>
+<p>📋  你可以自定义菜单，甚至可以创建外部链接菜单</p>
+<p>💻  你可以在 <strong>Windows</strong>，<strong>MacOS</strong> 或 <strong>Linux</strong> 设备上使用此客户端</p>
+<p>🌎  你可以使用 <strong>𝖦𝗂𝗍𝗁𝗎𝖻 𝖯𝖺𝗀𝖾𝗌</strong> 或 <strong>Coding Pages</strong> 向世界展示，未来将支持更多平台</p>
+<p>💬  你可以进行简单的配置，接入 <a href="https://github.com/gitalk/gitalk">Gitalk</a> 或 <a href="https://github.com/SukkaW/DisqusJS">DisqusJS</a> 评论系统</p>
+<p>🇬🇧  你可以使用<strong>中文简体</strong>或<strong>英语</strong></p>
+<p>🌁  你可以任意使用应用内默认主题或任意第三方主题，强大的主题自定义能力</p>
+<p>🖥  你可以自定义源文件夹，利用 OneDrive、百度网盘、iCloud、Dropbox 等进行多设备同步</p>
+<p>🌱 当然 <strong>Gridea</strong> 还很年轻，有很多不足，但请相信，它会不停向前 🏃</p>
+<p>未来，它一定会成为你离不开的伙伴</p>
+<p>尽情发挥你的才华吧！</p>
+<p>😘 Enjoy~</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[一言hitokoto调用]]></title>
+        <id>http://shuishan.cf/post/htmlyiyan/</id>
+        <link href="http://shuishan.cf/post/htmlyiyan/">
+        </link>
+        <updated>2022-06-29T16:00:00.000Z</updated>
+        <content type="html"><![CDATA[<h1 id="一言hitokoto调用">一言hitokoto调用</h1>
+<p>一言网(Hitokoto.cn)创立于2016年，隶属于萌创Team，目前网站主要提供一句话服务。<br>
+开发帮助中心-<a href="https://developer.hitokoto.cn/">点击进入</a>-</p>
+<h4 id="演示">演示</h4>
+<p>https://v1.hitokoto.cn/（从7种分类中随机抽取）</p>
+<p>https://v1.hitokoto.cn/?c=b （请求获得一个分类是漫画的句子）</p>
+<p>https://v1.hitokoto.cn/?c=f&amp;encode=text （请求获得一个来自网络的句子，并以纯文本格式输出）</p>
+<h4 id="基本用法">基本用法</h4>
+<pre><code class="language-html">#插入显示
+&lt;p id=&quot;hitokoto&quot;&gt;&lt;a href=&quot;#&quot; id=&quot;hitokoto_text&quot;&gt;获取中......&lt;/a&gt;&lt;/p&gt;
+#或者
+&lt;span id=&quot;hitokoto&quot;&gt;获取中......&lt;/span&gt;
+
+#新 API 方法
+&lt;script src=&quot;https://v1.hitokoto.cn/?encode=js&amp;select=%23hitokoto&quot; defer&gt;&lt;/script&gt;
+#如果调用动漫就是
+&lt;script src=&quot;https://v1.hitokoto.cn/?c=b&amp;encode=js&amp;select=%23hitokoto&quot; defer&gt;&lt;/script&gt;
+</code></pre>
+<h4 id="句子类型">句子类型</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">参数</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">a</td>
+<td>动画</td>
+</tr>
+<tr>
+<td style="text-align:center">b</td>
+<td>漫画</td>
+</tr>
+<tr>
+<td style="text-align:center">c</td>
+<td>游戏</td>
+</tr>
+<tr>
+<td style="text-align:center">d</td>
+<td>文学</td>
+</tr>
+<tr>
+<td style="text-align:center">e</td>
+<td>原创</td>
+</tr>
+<tr>
+<td style="text-align:center">f</td>
+<td>来自网络</td>
+</tr>
+<tr>
+<td style="text-align:center">g</td>
+<td>其他</td>
+</tr>
+<tr>
+<td style="text-align:center">h</td>
+<td>影视</td>
+</tr>
+<tr>
+<td style="text-align:center">i</td>
+<td>诗词</td>
+</tr>
+<tr>
+<td style="text-align:center">j</td>
+<td>网易云</td>
+</tr>
+<tr>
+<td style="text-align:center">k</td>
+<td>哲学</td>
+</tr>
+<tr>
+<td style="text-align:center">l</td>
+<td>抖机灵</td>
+</tr>
+<tr>
+<td style="text-align:center">其他</td>
+<td>作为 动画 类型处理</td>
+</tr>
+</tbody>
+</table>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Maya 权重插件 ngSkinTools 2.0.38汉化版]]></title>
+        <id>http://shuishan.cf/post/ngSkinTools2/</id>
+        <link href="http://shuishan.cf/post/ngSkinTools2/">
+        </link>
+        <updated>2022-06-29T16:00:00.000Z</updated>
+        <content type="html"><![CDATA[<h1 id="maya-权重插件-ngskintools-2038汉化版">Maya 权重插件 ngSkinTools 2.0.38汉化版</h1>
+<p>ngSkinTools是Autodesk Maya的一个蒙皮插件，为角色蒙皮引入了新概念，例如图层，任意姿势镜像，增强的画笔，真正的平滑等。</p>
+<p>😶‍🌫️带图层功能的权重绘制插件，可以多色同时显示出所有权重</p>
+<img src="http://r.photo.store.qq.com/psc?/V53kS8yY0ifRfN2IThsd4RqWjG1aTr4p/ruAMsa53pVQWN7FLK88i5jZRZL3cK2F38SfXNlIu9aU3OYgk3ZTZM9QDnh.EF0NyPsmqZki6KgLjfp4uhgBQtwac.njSg5COOnSQzgAPJfc!/r" style="height = 20px;" />
+<p><em><a href="http://r.photo.store.qq.com/psc?/V53kS8yY0ifRfN2IThsd4RqWjG1aTr4p/ruAMsa53pVQWN7FLK88i5jZRZL3cK2F38SfXNlIu9aU3OYgk3ZTZM9QDnh.EF0NyPsmqZki6KgLjfp4uhgBQtwac.njSg5COOnSQzgAPJfc!/r">查看大图</a></em></p>
+<p>👾基于官方最新免费版2.0.38 -- 自己汉化可能不标准🤕</p>
+<p>这些东西确实还是中文版用着更直观舒适一些</p>
+<p>所以即使是我用的并不多的东西我仍然会花时间汉化出来👌</p>
+<p>安装非常简单双击那个【双击安装】即可安装完成</p>
+<p>🗝️下载地址-<a href="https://www.wmiao.com/t-55651-1-1.html">点击进入</a>-</p>
+<figure data-type="image" tabindex="1"><img src="http://r.photo.store.qq.com/psc?/V53kS8yY0ifRfN2IThsd4RqWjG1aTr4p/ruAMsa53pVQWN7FLK88i5jZRZL3cK2F38SfXNlIu9aXO4FQXLW2sPOYgEZhU0iq0pqQF7mi3oRH*Cv1m5FUfJX28*Cxd.0ZMvs1x4VeHf9U!/r" alt="" loading="lazy"></figure>
+<p><em><a href="http://r.photo.store.qq.com/psc?/V53kS8yY0ifRfN2IThsd4RqWjG1aTr4p/ruAMsa53pVQWN7FLK88i5jZRZL3cK2F38SfXNlIu9aXO4FQXLW2sPOYgEZhU0iq0pqQF7mi3oRH*Cv1m5FUfJX28*Cxd.0ZMvs1x4VeHf9U!/r">查看大图</a></em></p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Maya 重拓扑插件 QuadRemesher 1.0.1汉化版]]></title>
+        <id>http://shuishan.cf/post/QuadRemesher/</id>
+        <link href="http://shuishan.cf/post/QuadRemesher/">
+        </link>
+        <updated>2022-01-29T16:00:00.000Z</updated>
+        <content type="html"><![CDATA[<h1 id="maya-重拓扑插件-quadremesher-101汉化版">Maya 重拓扑插件 QuadRemesher 1.0.1汉化版</h1>
+<p>只需要轻轻一点，布线马上丝滑</p>
+<p>安装方式复杂了应该直接bat的</p>
+<p>加了会激励你的无聊大鹅 它会提醒你保存以及》》》激励》》非常的有趣</p>
+<p>大鹅是长按E S C关闭</p>
+<hr>
+<p>安装就是无脑点下一步安装</p>
+<p>桌面会多一张食用说明</p>
+<p>安完打开maya就有了</p>
+<p>下载地址https://www.wmiao.com/t-54361-1-1.html</p>
+<table>
+<thead>
+<tr>
+<th><img src="http://r.photo.store.qq.com/psc?/V53kS8yY0ifRfN2IThsd4RqWjG1aTr4p/45NBuzDIW489QBoVep5mceqkwGPe66MxNi0ibYSpcftjbF54i3c1*keh4bV9P03yJHaNp3Ssc2uRMsE60OFYk*vgFaWlp7DV.OuTsIp0Va4!/r" style="height = 500px;" /></th>
+<th><img src="http://r.photo.store.qq.com/psc?/V53kS8yY0ifRfN2IThsd4RqWjG1aTr4p/45NBuzDIW489QBoVep5mceqkwGPe66MxNi0ibYSpcftYhVjb3Pu*6ztxRF4lj8E3yTwsJF4x*io0*AHVCZX9mSyH5PV0rgS.Vi11jUDBlo8!/r" style="height = 500px;" /></th>
+</tr>
+</thead>
+</table>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[用Python打开文件或程序]]></title>
+        <id>http://shuishan.cf/post/py1/</id>
+        <link href="http://shuishan.cf/post/py1/">
+        </link>
+        <updated>2022-01-06T16:00:00.000Z</updated>
+        <content type="html"><![CDATA[<h1 id="用python打开文件或程序">用Python打开文件或程序</h1>
+<h3 id="用记事本打开txt文档用图片浏览器打开图片或者直接打开一个软件">用<strong>记事本打开txt文档</strong>，用<strong>图片浏览器打开图片</strong>，或者直接<strong>打开一个软件</strong></h3>
+<p>os模块里有个命令<code>os.startfile</code>，函数作用是<strong>使用已关联的应用程序打开文件</strong>。</p>
+<h4 id="基本用法">基本用法</h4>
+<pre><code class="language-python">import os
+
+#打开图片
+os.startfile(r'D:\新建.png')
+#打开txt文件
+os.startfile(r'D:\新建文本文档.txt')
+#打开exe文件
+os.startfile(r'D:\360DrvMgrInstaller_beta.exe')
+&quot;&quot;&quot;startfile命令里只需输入文件的路径即可&quot;&quot;&quot;
+
+</code></pre>
+<h4 id="进阶用法">进阶用法</h4>
+<p>官方解释<code>os.startfile</code>函数有两个参数</p>
+<p><code>os.startfile</code>(<em>path</em>[, <em>operation</em>])</p>
+<p><code>path</code>指的是文件路径，有意思的是<code>operation</code>参数，</p>
+<ul>
+<li>当 <em>operation</em> 未指定或指定为 <code>'open'</code> 时，通过扩展名相关联的应用程序（如果有）打开文件。</li>
+<li>当指定另一个 <em>operation</em> 时，它必须是一个“命令动词” (“command verb”)，该词指定对文件执行的操作。文档中的常用动词有 <code>'print'</code> 和 <code>'edit'</code> （用于文件），以及 <code>'explore'</code> 和 <code>'find'</code> （用于目录）。</li>
+<li><code>print</code>，可以直接打印图片或文档，，office文件会直接用默认的打印机打印，没有提示操作，图片会弹出打印窗体</li>
+</ul>
+<pre><code class="language-python">import os
+
+#直接打印
+os.startfile(r'D:\新建.png','print')
+os.startfile(r'D:\BOM\20.xls','print')
+#find会弹出一个窗口，让你输入要搜索的内容
+os.startfile(r'D:\C' ,'find')
+
+</code></pre>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Adobe软件下载]]></title>
+        <id>http://shuishan.cf/post/adobexiazia/</id>
+        <link href="http://shuishan.cf/post/adobexiazia/">
+        </link>
+        <updated>2021-11-11T16:00:00.000Z</updated>
+        <content type="html"><![CDATA[<p><strong>Adobe系列软件，全网资源都来自于一个地方@vposy</strong></p>
+<p>他的微博主页-<a href="https://weibo.com/vposy">点击进入</a>-</p>
+<p>免费的破解制作者，但是需要微博关注后才可以看到主页第一篇微博，内有下载地址</p>
+<p><em>在微博一直更新</em></p>
+]]></content>
+    </entry>
+</feed>
