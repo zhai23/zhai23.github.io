@@ -1,0 +1,670 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://zhai23.github.io</id>
+    <title>水杉-动画人</title>
+    <updated>2024-02-03T13:26:28.916Z</updated>
+    <generator>https://github.com/jpmonette/feed</generator>
+    <link rel="alternate" href="https://zhai23.github.io"/>
+    <link rel="self" href="https://zhai23.github.io/atom.xml"/>
+    <subtitle>温故而知新</subtitle>
+    <logo>https://zhai23.github.io/images/avatar.png</logo>
+    <icon>https://zhai23.github.io/favicon.ico</icon>
+    <rights>All rights reserved 2024, 水杉-动画人</rights>
+    <entry>
+        <title type="html"><![CDATA[一个美观的maya插件UI- 图标]]></title>
+        <id>https://zhai23.github.io/一个美观的maya插件UI- 图标/</id>
+        <link href="https://zhai23.github.io/一个美观的maya插件UI- 图标/">
+        </link>
+        <updated>2024-02-03T11:13:39.000Z</updated>
+        <content type="html"><![CDATA[<h2 id="一个美观的maya插件ui-图标">一个美观的maya插件UI- 图标</h2>
+<p>每行五个图标，界面下面三个按钮</p>
+<p>大小自适应</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th><img src="https://zhaitu.netlify.app/boke/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE-2024-02-03-211450.28e63e2c4e80.png" alt="屏幕截图-2024-02-03-211450" loading="lazy"></th>
+<th></th>
+</tr>
+</thead>
+</table>
+<pre><code class="language-python">import maya.cmds as cmds
+from PySide2 import QtCore, QtGui, QtWidgets
+import shiboken2
+import maya.OpenMayaUI as omui
+
+class MyWindow(QtWidgets.QMainWindow):
+    def __init__(self):
+        # 获取Maya主窗口
+        maya_main_window_ptr = omui.MQtUtil.mainWindow()
+        maya_main_window = shiboken2.wrapInstance(long(maya_main_window_ptr), QtWidgets.QWidget)
+
+        # 将自定义窗口设置为Maya主窗口的子窗口，保证失去焦点时仍显示在前面不被遮挡
+        super(MyWindow, self).__init__(maya_main_window)
+
+        # 创建窗口布局
+        self.main_layout = QtWidgets.QVBoxLayout()
+
+        # 创建图标
+        self.icons = []
+        # 十二生肖图标文件名列表
+        zodiac_icons = [&quot;1.png&quot;, &quot;2.png&quot;, &quot;3.png&quot;, &quot;4.png&quot;, &quot;5.png&quot;,
+                        &quot;6.png&quot;, &quot;7.png&quot;, &quot;8.png&quot;, &quot;9.png&quot;, &quot;10.png&quot;,
+                        &quot;11.png&quot;, &quot;12.png&quot;]
+        for icon_name in zodiac_icons:
+            icon = QtWidgets.QLabel()
+            icon.setPixmap(QtGui.QPixmap(&quot;C:\\mayap\\pControllers1.0\\pControllers\\Lib\\{}&quot;.format(icon_name)))
+            # 为每个图标添加鼠标点击事件
+            icon.mousePressEvent = self.create_icon_click_event(icon_name)
+            self.icons.append(icon)
+
+        # 创建图标布局，每行最多5个图标
+        self.icon_layout = QtWidgets.QGridLayout()
+        for i, icon in enumerate(self.icons):
+            row = i // 5
+            column = i % 5
+            self.icon_layout.addWidget(icon, row, column)
+
+        # 创建按钮
+        self.buttons = []
+        for i in range(3):
+            button = QtWidgets.QPushButton()
+            self.buttons.append(button)
+
+        # 设置按钮文本
+        self.buttons[0].setText(&quot;左&quot;)
+        self.buttons[1].setText(&quot;中&quot;)
+        self.buttons[2].setText(&quot;右&quot;)
+
+        # 创建按钮布局
+        self.button_layout = QtWidgets.QHBoxLayout()
+        for button in self.buttons:
+            self.button_layout.addWidget(button)
+
+        # 添加布局到窗口
+        self.main_layout.addLayout(self.icon_layout)
+        self.main_layout.addLayout(self.button_layout)
+
+        self.central_widget = QtWidgets.QWidget()
+        self.central_widget.setLayout(self.main_layout)
+        self.setCentralWidget(self.central_widget)
+
+        # 设置窗口最小大小为(10, 30)让它自适应元素大小
+        self.setMinimumSize(10, 30)
+
+        # 连接按钮的点击事件到槽函数
+        self.buttons[0].clicked.connect(self.print_tian)
+        self.buttons[1].clicked.connect(self.print_di)
+        self.buttons[2].clicked.connect(self.print_ren)
+
+        # 显示窗口
+        self.show()
+
+    # 创建图标点击事件处理函数
+    def create_icon_click_event(self, icon_name):
+        def event(event):
+            print(self.get_zodiac_animal(icon_name))
+        return event
+
+    # 获取生肖动物名称
+    def get_zodiac_animal(self, icon_name):
+        zodiac_animals = {
+            &quot;1.png&quot;: &quot;鼠&quot;,
+            &quot;2.png&quot;: &quot;牛&quot;,
+            &quot;3.png&quot;: &quot;虎&quot;,
+            &quot;4.png&quot;: &quot;兔&quot;,
+            &quot;5.png&quot;: &quot;龙&quot;,
+            &quot;6.png&quot;: &quot;蛇&quot;,
+            &quot;7.png&quot;: &quot;马&quot;,
+            &quot;8.png&quot;: &quot;羊&quot;,
+            &quot;9.png&quot;: &quot;猴&quot;,
+            &quot;10.png&quot;: &quot;鸡&quot;,
+            &quot;11.png&quot;: &quot;狗&quot;,
+            &quot;12.png&quot;: &quot;猪&quot;,
+        }
+        return zodiac_animals.get(icon_name, &quot;未知&quot;)
+
+    # 槽函数：打印&quot;天&quot;
+    def print_tian(self):
+        print(&quot;天&quot;)
+
+    # 槽函数：打印&quot;地&quot;
+    def print_di(self):
+        print(&quot;地&quot;)
+
+    # 槽函数：打印&quot;人&quot;
+    def print_ren(self):
+        print(&quot;人&quot;)
+
+# 创建窗口
+window = MyWindow()
+
+# 创建一个函数来显示窗口
+def show_window():
+    window.show()
+
+# 运行 Maya 命令，传递函数名而不是直接的代码字符串
+cmds.scriptJob(runOnce=True, event=[&quot;SceneOpened&quot;, show_window])
+
+</code></pre>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[测试页]]></title>
+        <id>https://zhai23.github.io/测试页/</id>
+        <link href="https://zhai23.github.io/测试页/">
+        </link>
+        <updated>2024-02-03T11:13:39.000Z</updated>
+        <content type="html"><![CDATA[<h2 id="测试">测试</h2>
+<p>复制文本</p>
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>复制文字</title>
+</head>
+<body>
+  <button onclick="copyText()">复制文字</button>
+  <script>
+    function copyText() {
+      // 获取文本内容
+      const text = document.getElementById('text').textContent;
+      // 复制文本
+      navigator.clipboard.writeText(text);
+      // 提示用户复制成功
+      alert('复制成功！');
+    }
+      </script>
+      <pre id="text">测试第一行
+测试第二行
+    测试空格
+测试四三行</pre>
+</body>
+</html>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[ADB-Fastboot刷机工具]]></title>
+        <id>https://zhai23.github.io/ADB-Fastboot刷机工具/</id>
+        <link href="https://zhai23.github.io/ADB-Fastboot刷机工具/">
+        </link>
+        <updated>2024-01-28T07:56:40.000Z</updated>
+        <content type="html"><![CDATA[<p>基于Windows 的 SDK Platform-Tools---34.0.5（2023 年 10 月）</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th><img src="https://zhaitu.netlify.app/boke/boke_%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE-2024-01-28-155014.jpg" alt="boke_屏幕截图-2024-01-28-155014" loading="lazy"></th>
+<th></th>
+</tr>
+</thead>
+</table>
+<table>
+<thead>
+<tr>
+<th>下载地址：https://mooc1.chaoxing.com/mooc-ans/nodedetailcontroller/visitnodedetail?courseId=235686227&amp;knowledgeId=817614980</th>
+</tr>
+</thead>
+</table>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[基于多边形变形的控制器]]></title>
+        <id>https://zhai23.github.io/基于多边形变形的控制器/</id>
+        <link href="https://zhai23.github.io/基于多边形变形的控制器/">
+        </link>
+        <updated>2023-08-12T10:17:39.000Z</updated>
+        <content type="html"><![CDATA[<h2 id="基于多边形变形的控制器">基于多边形变形的控制器</h2>
+<table>
+<thead>
+<tr>
+<th><img src="https://zhaitu.netlify.app/boke/202308131808646.gif" style="height:200px" /></th>
+<th><img src="https://zhaitu.netlify.app/boke/boke_39ca17cfcc5bbdd5fffc0842116eca51.gif" style="height:200px" /></th>
+</tr>
+</thead>
+</table>
+<p>这样子其实没什么用，但是很像之前看过的皮克斯的动画控制器</p>
+<p>可以替换掉原来的任何控制器</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[乐视超4X55刷机]]></title>
+        <id>https://zhai23.github.io/乐视超4X55刷机/</id>
+        <link href="https://zhai23.github.io/乐视超4X55刷机/">
+        </link>
+        <updated>2023-06-25T15:52:15.000Z</updated>
+        <content type="html"><![CDATA[<p>乐视超4X55 是938芯片</p>
+<table>
+<thead>
+<tr>
+<th>u盘16G以内 格式化为Fat32</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>刷机方法</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>把ROM包重命名为LetvUpgrade938.bin放到U盘根目录最好插到电视顶部USB接口  依次按下【设置】【音量+】【音量-】【频道-】【频道+】【开机】键，会进入Fastboot出现系统升级进度条Fastboot下刷入的文件是.bin 依次按下【设置】【音量+】【音量-】【频道+】【频道-】【开机】键，会进入Recovery输入rec后会出现rec，默认系统会出现恢复模式Recovery下刷入的文件是.zip</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>目前在用的系统</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>首先刷入原版系统包，原厂包刷机完成之后，电视会自动重启，进入到设置向导的页面，此时遥控器直接按下关机键关机，不要进入设置！</td>
+</tr>
+<tr>
+<td>刷入典藏版系统超4_69S典藏版V2---2018.11.13更新</td>
+</tr>
+<tr>
+<td><strong>刷入Recovery</strong></td>
+</tr>
+<tr>
+<td><strong>删除用户数据</strong>进入Recovery，选择wip data/fastory reset选择yes -- delete all user data</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th><img src="https://zhaitu.netlify.app/boke/202308131809482.png" alt="202308131809482" loading="lazy"></th>
+<th><img src="https://zhaitu.netlify.app/boke/202308131810749.png" alt="202308131810749" loading="lazy"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>刷入Root等文件选择apply updata from extarnal storage</p>
+<table>
+<thead>
+<tr>
+<th><img src="https://zhaitu.netlify.app/boke/202308131811498.png" alt="202308131811498" loading="lazy"></th>
+<th>依次刷入下面文件</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>防止Recovery被覆盖的文件</strong> <strong>Root包</strong> <strong>允许自定义桌面包</strong> <strong>如果要删除Root，则刷入Root卸载包</strong></p>
+<p>----------------------------------------- 分割线 -----------------------------------------</p>
+<p>国际版刷机包</p>
+<table>
+<thead>
+<tr>
+<th>刷机步骤跟国内相同首先刷入原系统再刷入美版Recovery（如果无法刷入，可以先刷入典藏版）然后刷入美版系统</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>美版系统和升级包美版rec 俄版系统</td>
+</tr>
+</tbody>
+</table>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[maya曲线生成骨骼]]></title>
+        <id>https://zhai23.github.io/maya曲线生成骨骼/</id>
+        <link href="https://zhai23.github.io/maya曲线生成骨骼/">
+        </link>
+        <updated>2023-04-08T11:13:39.000Z</updated>
+        <content type="html"><![CDATA[<h2 id="maya曲线生成骨骼">maya曲线生成骨骼</h2>
+<p>非均匀</p>
+<pre><code class="language-python">
+
+global proc curveToBones() {
+string $selection[] = `ls -sl`;
+for($crvi = 0; $crvi &lt; size($selection); $crvi++) {
+string $curveName = $selection[$crvi];
+string $polypoints = &quot;&quot;;
+string $pointlist = &quot;&quot;;
+string $ps = &quot;tmp_poly&quot;;
+
+int $numCV = `getAttr ($curveName+&quot;.degree&quot;)` + `getAttr ($curveName+&quot;.spans&quot;)`;
+int $origCV = 0;
+
+if ($numCV &lt; 2) {
+	confirmDialog -title &quot;Error&quot; -message &quot;不要选择只有一个点的线&quot; -button &quot;Thank you Sir, may I have another.&quot; -dismissString &quot;Yes&quot;;
+	print &quot;\n\一般最需要少三个点\n\n&quot;;
+	return;
+}
+
+$newcurveName = &quot;N_&quot; + $curveName;
+string $origcurveName = $curveName;
+
+if ($numCV == 2) {
+	duplicate -name $newcurveName $curveName;
+	$curveName = $newcurveName;
+	$numCV = 3;
+	$origCV = 2;
+	float $secondpoint[] = `xform -q -ws -translation ($newcurveName+&quot;.cv[1]&quot;)`;
+	$ycoord = $secondpoint[1] - 1;
+	print $secondpoint[0] ; print $ycoord ; print $secondpoint[2];
+	curve -ws -a -p $secondpoint[0] $ycoord $secondpoint[2] $newcurveName;
+}
+
+
+	
+
+for ($i = 0; $i &lt; $numCV; $i++) {
+      float $point[] = `xform -q -ws -translation ($curveName+&quot;.cv[&quot;+$i+&quot;]&quot;)`;
+      $pointlist = &quot; -p &quot; + $point[0] + &quot; &quot; + $point[1] + &quot; &quot; + $point[2] + &quot; &quot;;
+      $polypoints = $polypoints + $pointlist;
+}
+
+eval (&quot;polyCreateFacet -ch on -tx 1 -s 1 &quot; + $polypoints + &quot;-n &quot; + $ps);
+      
+string $loc1 = &quot;tmp_skel_locator&quot;;
+string $loc2 = &quot;tmp_skel_locator2&quot;;
+string $loc1n = $loc1 + &quot;_normalConstraint1&quot;;
+
+string $jn[];
+string $psvt2[];
+for ($i = 0; $i &lt; $numCV; $i++) {
+	int $k=$i + 1; 
+	if ($origCV == 2) {
+	$jn[$i] = ($origcurveName + &quot;_j&quot; + $k); 
+	} else {
+	$jn[$i] = ($curveName + &quot;_j&quot; + $k); 
+	}
+	$psvt2[$i] = $ps + &quot;.vtx[&quot; + $i + &quot;]&quot;;
+}
+
+
+string $psvt = $curveName + &quot;.cv[0]&quot;;
+float $move[] = `xform -q -ws -translation $psvt`;
+spaceLocator -name $loc1;
+xform -translation $move[0] $move[1] $move[2] $loc1;
+select -r $ps ;
+select -add $loc1 ;
+normalConstraint -weight 1 -aimVector 0 0 1 -upVector 0 1 0 -worldUpVector 0 1 0;
+select -r $loc1n;
+delete ;
+select -cl;
+
+
+duplicate -name $loc2 $loc1;
+select -r $ps ;
+select -add $loc2 ;
+parent;
+select -r $loc2 ;
+move -ls 1 0 0 ;
+move -ls 1 1 0 ;
+rotate 0 0 0 ;
+select -cl;
+
+float $ptpos[];
+
+for ($i = 0; $i &lt; $numCV; $i++) {
+	string $tmpname = $psvt2[$i];
+	float $newmove[] = `xform -q -ws -translation $tmpname`;
+	int $mult = $i * 3;
+	$ptpos[$mult] = $newmove[0];
+	$ptpos[($mult+1)] = $newmove[1];
+	$ptpos[($mult+2)] = $newmove[2];
+}
+
+select -cl;
+
+joint -p $ptpos[0] $ptpos[1] $ptpos[2] -n $jn[0];
+for ($i = 1; $i &lt; $numCV; $i++) {
+	int $kk = $i - 1;
+	int $mult = $i * 3;
+	joint -p $ptpos[$mult] $ptpos[($mult+1)] $ptpos[($mult+2)] -n $jn[$i];
+	joint -e  -zso -oj xyz $jn[$kk]; 
+}
+
+if ($origCV == 2) {
+	select -r $jn[2];
+	delete;
+	select -r $newcurveName;
+	delete;
+}
+select -r $jn[0] ;
+select -add $loc2 ;
+parent;
+select -r $loc1 ;
+select -add $loc2 ;
+pointConstraint -weight 1;
+orientConstraint -weight 1;
+select -r $jn[0] ;
+parent -world;
+select -r $loc2 ;
+delete;
+select -r $loc1 ;
+delete;
+
+
+
+}
+}
+
+curveToBones();
+</code></pre>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[maya铆钉小工具Rivet]]></title>
+        <id>https://zhai23.github.io/maya铆钉小工具Rivet/</id>
+        <link href="https://zhai23.github.io/maya铆钉小工具Rivet/">
+        </link>
+        <updated>2023-04-08T10:17:39.000Z</updated>
+        <content type="html"><![CDATA[<h2 id="maya铆钉小工具rivet">maya铆钉小工具Rivet</h2>
+<pre><code class="language-python">from maya import cmds, OpenMaya
+ 
+class PFRivet():
+    &quot;&quot;&quot;
+    This script doesn't use the nodes that prevents the mesh to evaluate in Parallel(GPU). 
+    Select 2 edges on a mesh and run the script.
+    Name your rivet and it's done.
+    &quot;&quot;&quot;
+     
+    def __init__(self):
+        if len(cmds.ls(sl=True, fl=True)) != 2:
+            OpenMaya.MGlobal.displayWarning('请选择两条边')
+        else:
+            promptu = cmds.promptDialog(title='Rivet name', message='命名:', button=['确认', '取消'],
+          defaultButton='OK', cancelButton='Cancel', dismissString='Cancel')
+            if promptu == 'OK':
+                self.name = cmds.promptDialog(q=True, text=True)
+            else:
+                self.name = 'rivet'
+            self.get_data()
+            self.create_nodes()
+            self.make_connections()
+            OpenMaya.MGlobal.displayInfo('Job Done!')
+            cmds.select(self.rivloc)
+    
+    def get_data(self):
+        edges = cmds.ls(sl=True, fl=True)
+        self.edge1Id = float(edges[0][edges[0].find('[')+1:edges[0].find(']')])
+        self.edge2Id = float(edges[1][edges[1].find('[')+1:edges[1].find(']')])
+        dag = edges[0].split('.')[0]
+        cmds.select(dag)
+        cmds.pickWalk(d='down')
+        self.shape = cmds.ls(sl=True)[0]
+        self.maxedge = cmds.polyEvaluate(self.shape, e=True)
+     
+    def create_nodes(self):
+        self.rivloc = cmds.spaceLocator(n=self.name + '_LOC')[0]
+        self.rivgrp = cmds.group(n=self.name + '_offset')
+        cmds.addAttr(self.rivloc, ln='U',k=True, at='float', min=0, max=1, dv=0.5)
+        cmds.addAttr(self.rivloc, ln='V',k=True, at='float', min=0, max=1, dv=0.5)
+        cmds.addAttr(self.rivloc, ln='edge1Index', k=True, at='long', min=0, max=self.maxedge, dv=self.edge1Id)
+        cmds.addAttr(self.rivloc, ln='edge2Index', k=True, at='long', min=0, max=self.maxedge, dv=self.edge2Id)
+        self.cfme1 = cmds.createNode('curveFromMeshEdge', n=self.name + '_CFME1')
+        self.cfme2 = cmds.createNode('curveFromMeshEdge', n=self.name + '_CFME2')
+        self.loft = cmds.createNode('loft', n=self.name + '_LOFT')
+        cmds.setAttr(self.loft + '.degree', 1)
+        self.posi = cmds.createNode('pointOnSurfaceInfo', n=self.name + '_POSI')
+        cmds.setAttr(self.posi + '.turnOnPercentage', 1)
+        self.fbfm = cmds.createNode('fourByFourMatrix', n=self.name  + '_FBFM')
+        self.dcm = cmds.createNode('decomposeMatrix', n=self.name + '_DCM')
+        
+    def make_connections(self):
+        cmds.connectAttr(self.shape + '.worldMesh[0]', self.cfme1 + '.inputMesh')
+        cmds.connectAttr(self.shape + '.worldMesh[0]', self.cfme2 + '.inputMesh')
+        cmds.connectAttr(self.rivloc + '.edge1Index', self.cfme1 + '.edgeIndex[0]')
+        cmds.connectAttr(self.rivloc + '.edge2Index', self.cfme2 + '.edgeIndex[0]')
+        cmds.connectAttr(self.cfme1 + '.outputCurve', self.loft + '.inputCurve[0]')
+        cmds.connectAttr(self.cfme2 + '.outputCurve', self.loft + '.inputCurve[1]')
+        cmds.connectAttr(self.loft + '.outputSurface', self.posi + '.inputSurface')
+        cmds.connectAttr(self.rivloc + '.U', self.posi + '.parameterU')
+        cmds.connectAttr(self.rivloc + '.V', self.posi + '.parameterV')
+        cmds.connectAttr(self.posi + '.positionX', self.fbfm + '.in30')
+        cmds.connectAttr(self.posi + '.positionY', self.fbfm + '.in31')
+        cmds.connectAttr(self.posi + '.positionZ', self.fbfm + '.in32')
+        cmds.connectAttr(self.posi + '.normalX', self.fbfm + '.in00')
+        cmds.connectAttr(self.posi + '.normalY', self.fbfm + '.in01')
+        cmds.connectAttr(self.posi + '.normalZ', self.fbfm + '.in02')
+        cmds.connectAttr(self.posi + '.tangentUx', self.fbfm + '.in10')
+        cmds.connectAttr(self.posi + '.tangentUy', self.fbfm + '.in11')
+        cmds.connectAttr(self.posi + '.tangentUz', self.fbfm + '.in12')
+        cmds.connectAttr(self.posi + '.tangentVx', self.fbfm + '.in20')
+        cmds.connectAttr(self.posi + '.tangentVy', self.fbfm + '.in21')
+        cmds.connectAttr(self.posi + '.tangentVz', self.fbfm + '.in22')
+        cmds.connectAttr(self.fbfm + '.output', self.dcm + '.inputMatrix')
+        cmds.connectAttr(self.dcm + '.outputRotateX', self.rivgrp + '.rotateX')
+        cmds.connectAttr(self.dcm + '.outputRotateY', self.rivgrp + '.rotateY')
+        cmds.connectAttr(self.dcm + '.outputRotateZ', self.rivgrp + '.rotateZ')
+        cmds.connectAttr(self.dcm + '.outputTranslateX', self.rivgrp + '.translateX')
+        cmds.connectAttr(self.dcm + '.outputTranslateY', self.rivgrp + '.translateY')
+        cmds.connectAttr(self.dcm + '.outputTranslateZ', self.rivgrp + '.translateZ')
+ 
+insR = PFRivet()
+</code></pre>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[使用批处理删除目录下.pyc]]></title>
+        <id>https://zhai23.github.io/使用批处理删除目录下pyc/</id>
+        <link href="https://zhai23.github.io/使用批处理删除目录下pyc/">
+        </link>
+        <updated>2023-04-08T08:17:39.000Z</updated>
+        <content type="html"><![CDATA[<h2 id="使用批处理删除目录下pyc">使用批处理删除目录下.pyc</h2>
+<pre><code class="language-shell">@echo off
+echo Deleted .pyc files:
+for /r %%a in (&quot;.\*&quot;) do (
+	if &quot;%%~xa&quot; EQU &quot;.pyc&quot; (
+		echo %%a
+		del %%a
+	)
+)
+echo Deleted __pycache__ directories:
+for /r /d %%d in (&quot;.\*&quot;) do (
+	if &quot;%%~nd&quot; EQU &quot;__pycache__&quot; (
+		echo %%d
+		rmdir %%d
+	)
+)
+pause
+</code></pre>
+<p>这段脚本主要用于删除 Python 程序生成的 .pyc 文件和 pycache 目录。下面是具体解释：</p>
+<pre><code class="language-bash">
+
+@echo off：关闭命令行窗口的回显，以避免输出不必要的信息。
+
+echo Deleted .pyc files:：输出一段文字，指示即将删除的文件是 .pyc 文件。
+
+for /r %%a in (&quot;.\*&quot;) do (：在当前目录及其子目录中递归搜索文件。 %%a 表示找到的文件名，可以自定义。
+
+if &quot;%%~xa&quot; EQU &quot;.pyc&quot; (：判断文件的扩展名是否为 .pyc。
+
+echo %%a：输出当前找到的 .pyc 文件路径。
+
+del %%a：删除当前找到的 .pyc 文件。
+
+)：结束 for 循环。
+
+echo Deleted __pycache__ directories:：输出一段文字，指示即将删除的目录是 pycache 目录。
+
+for /r /d %%d in (&quot;.\*&quot;) do (：在当前目录及其子目录中递归搜索目录。/d 参数用于仅搜索目录，去除 /d 参数则会搜索所有文件和目录。
+
+if &quot;%%~nd&quot; EQU &quot;__pycache__&quot; (：判断目录名是否为 pycache。
+
+echo %%d：输出当前找到的 pycache 目录路径。
+
+rmdir %%d：删除当前找到的 pycache 目录。
+
+)：结束 for
+</code></pre>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[正则表达式语言]]></title>
+        <id>https://zhai23.github.io/正则表达式语言/</id>
+        <link href="https://zhai23.github.io/正则表达式语言/">
+        </link>
+        <updated>2023-03-25T16:55:21.000Z</updated>
+        <content type="html"><![CDATA[<h4 id="全部正则表达式可以参照微软的文档">全部正则表达式可以参照微软的文档</h4>
+<p>https://learn.microsoft.com/zh-cn/dotnet/standard/base-types/regular-expression-language-quick-reference</p>
+<h4 id="使用正则表达式查找和替换">使用正则表达式查找和替换</h4>
+<p>有需要修改的代码是这个</p>
+<p>想要在所有字符串前面加  <strong>u</strong></p>
+<pre><code class="language-python">winTitle='sdd_GenerateOptionEditor'
+cmds.radioButtonGrp('goFlagRBG',e=1,sl=self.inputData['flagType'])
+cmds.radioButtonGrp('goBoolRBG',e=1,sl=self.inputData['booleanType'])
+</code></pre>
+<p>我们需要搜索所有字符串就可以这样搜索</p>
+<pre><code class="language-shell">#搜索框
+'.*?'
+</code></pre>
+<p>搜索结果就是</p>
+<p>winTitle=<strong>'sdd_GenerateOptionEditor'</strong><br>
+cmds.radioButtonGrp(<strong>'goFlagRBG'</strong>,e=1,sl=self.inputData[<strong>'flagType'</strong>])<br>
+cmds.radioButtonGrp(<strong>'goBoolRBG'</strong>,e=1,sl=self.inputData[<strong>'booleanType'</strong>])</p>
+<p>其中  <strong>?</strong>  代表懒惰模式，搜索到符合条件的就会中断</p>
+<p>如果去掉问号就不会中断结果就是</p>
+<p>winTitle=<strong>'sdd_GenerateOptionEditor'</strong><br>
+cmds.radioButtonGrp(<strong>'goFlagRBG',e=1,sl=self.inputData['flagType'</strong>])<br>
+cmds.radioButtonGrp(<strong>'goBoolRBG',e=1,sl=self.inputData['booleanType'</strong>])</p>
+<p>接下来要在字符串前面加  <strong>u</strong></p>
+<p>我们可以使用这个搜索和替换</p>
+<pre><code class="language-shell">#搜索框
+'(.+?)'
+</code></pre>
+<pre><code class="language-shell">#替换框
+u'$1'
+</code></pre>
+<p>这段中的  <strong>$1</strong>  代表的是上面搜索中的第一个括号内的内容</p>
+<p>执行后就可以输出</p>
+<pre><code class="language-python">winTitle=u'sdd_GenerateOptionEditor'
+cmds.radioButtonGrp(u'goFlagRBG',e=1,sl=self.inputData[u'flagType'])
+cmds.radioButtonGrp(u'goBoolRBG',e=1,sl=self.inputData[u'booleanType'])
+</code></pre>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[网易云音乐修改版]]></title>
+        <id>https://zhai23.github.io/wang-yi-yun-yin-le-xiu-gai-ban/</id>
+        <link href="https://zhai23.github.io/wang-yi-yun-yin-le-xiu-gai-ban/">
+        </link>
+        <updated>2022-12-01T16:58:53.000Z</updated>
+        <content type="html"><![CDATA[<p>11223</p>
+]]></content>
+    </entry>
+</feed>
