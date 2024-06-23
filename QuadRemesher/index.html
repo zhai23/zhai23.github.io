@@ -1,0 +1,554 @@
+<html lang='zh-CN'>
+
+<head>
+  <meta charset="utf-8" />
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no"
+/>
+<title>Maya 重拓扑插件 QuadRemesher 1.0.1汉化版 | 水杉-动画人</title>
+
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+/>
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css"
+/>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script src="//cdn.bootcss.com/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/gh/wskkku/wskkku.github.io@main/css/normalize0.0.0.1.css"
+/>
+<script src="https://cdn.jsdelivr.net/gh/wskkku/wskkku.github.io@main/js/jQuery.Rokss.js"></script>
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+
+<link
+  rel="shortcut icon"
+  href="https://zhai23.github.io/favicon.ico?v=1719142869571"
+/>
+<link
+  href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css"
+  rel="stylesheet"
+/>
+<link rel="stylesheet" href="https://zhai23.github.io/styles/main.css" />
+
+<link
+  rel="alternate"
+  type="application/atom+xml"
+  title="Maya 重拓扑插件 QuadRemesher 1.0.1汉化版 | 水杉-动画人 - Atom Feed"
+  href="https://zhai23.github.io/atom.xml"
+/>
+<link
+  rel="stylesheet"
+  href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700"
+/>
+
+<!-- 谷歌图标 -->
+<link
+  rel="stylesheet"
+  href="https://fonts.sandbox.google.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,0,0"
+/>
+
+<script
+  id="MathJax-script"
+  async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+></script>
+<link
+  href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.7.2/build/styles/atelier_plateau_light.min.css"
+  id="hightLightCode"
+  rel="stylesheet"
+  type="text/css"
+/>
+
+<script>
+  var setStyle = function (cssArr) {
+    var i = 0,
+      len = cssArr.length;
+    for (i; i < len; i++) {
+      document.write(
+        '<link href="' + cssArr[i] + '" type="text/css" rel=stylesheet>'
+      );
+    }
+  };
+
+  if ($.cookie("theme") === "dark") {
+    $("html").attr("theme", "dark");
+    $("#hightLightCode").attr(
+      "href",
+      "//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.7.2/build/styles/atelier_plateau_dark.min.css"
+    );
+  } else {
+    $("#hightLightCode").attr(
+      "href",
+      "//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.7.2/build/styles/atelier_plateau_light.min.css"
+    );
+  }
+</script>
+ 
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script
+  async
+  src="https://www.googletagmanager.com/gtag/js?id=G-Z5JKRHJF7B"
+></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag() {
+    dataLayer.push(arguments);
+  }
+  gtag("js", new Date());
+
+  gtag("config", "G-4J70SN1KEE");
+</script>
+ 
+
+    <meta name="description" content="Maya 重拓扑插件 QuadRemesher 1.0.1汉化版
+只需要轻轻一点，布线马上丝滑
+安装方式复杂了应该直接bat的
+加了会激励你的无聊大鹅 它会提醒你保存以及》》》激励》》非常的有趣
+大鹅是长按E S C关闭
+
+安装就是无脑点下..." />
+    <meta name="keywords" content="建模,拓扑,maya插件,汉化" />
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css"> -->
+    <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.7.2/build/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+</head>
+
+<body>
+
+  <div class="nav-placeholder">
+  <nav class="navbar navbar-expand-lg light-theme">
+    <div class="container">
+      <a class="navbar-brand" href="#">
+        <img
+          src="https://zhai23.github.io/favicon.ico?v=1719142869571"
+          width="30"
+          height="30"
+          alt=""
+        />
+      </a>
+      <a class="navbar-brand" href="#"> 水杉-动画人 </a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="material-symbols-rounded"> menu </span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+           
+          <li class="nav-item">
+            <a href="/" class="nav-link" target="_blank">
+              首页
+            </a>
+          </li>
+            
+          <li class="nav-item">
+            <a href="/archives" class="nav-link" target="_blank">
+              归档
+            </a>
+          </li>
+            
+          <li class="nav-item">
+            <a href="/tags" class="nav-link" target="_blank">
+              标签
+            </a>
+          </li>
+            
+          <li class="nav-item">
+            <a href="https://zhai23.github.io/about" class="nav-link" target="_blank">
+              关于
+            </a>
+          </li>
+           
+        </ul>
+
+        <form
+          class="form-inline my-2 my-lg-0"
+          id="gridea-search-form"
+          action="https://zhai23.github.io/search/"
+        >
+          <input
+            class="search-input mr-sm-2"
+            type="search"
+            placeholder="Search"
+            aria-label="Search"
+            name="q"
+            autocomplete="off"
+          />
+          <button class="btn-search my-sm-0" type="submit">
+            <span class="material-symbols-rounded"> search </span>
+          </button>
+        </form>
+
+        <div class="theme-change">
+          <ul>
+            <span class="material-symbols-rounded light-theme icon">
+              light_mode
+            </span>
+            <span class="material-symbols-rounded dark-theme icon">
+              dark_mode
+            </span>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </nav>
+</div>
+
+
+
+<script>
+  var themeFlag = 0;
+  if ($.cookie("theme") === "dark") {
+    $(".theme-change").find("ul").css({
+      transform: "translateX(-55px)",
+      transition: "none",
+    });
+    themeFlag = 1;
+  }
+
+  $(".theme-change").click(function () {
+    $(this).find("ul").css("transition", ".3s");
+    if (themeFlag == 0) {
+      $(this).find("ul").css("transform", "translateX(-55px)");
+      themeFlag = 1;
+      $.removeCookie("theme", { path: "/" });
+      $.cookie("theme", "dark", { path: "/" });
+      $("html").attr("theme", "dark");
+    } else {
+      $(this).find("ul").css("transform", "translateX(0px)");
+      themeFlag = 0;
+      $.removeCookie("theme", { path: "/" });
+      $.cookie("theme", "light", { path: "/" });
+      $("html").attr("theme", "light");
+    }
+  });
+
+  window.addEventListener("scroll", function () {
+    if (this.pageYOffset >= 300) {
+      $(".navbar").addClass("fixed-top").css({
+        background: "var(--box-bg-color)",
+        "border-bottom": "2px solid var(--main-color)",
+      });
+
+      $(".form-inline").css("backgroundColor", "var(--page-bg-color)");
+    } else {
+      $(".navbar").removeClass("fixed-top").css({
+        background: "none",
+        "border-bottom": "none",
+      });
+
+      $(".form-inline").css("backgroundColor", "var(--box-bg-color)");
+    }
+  });
+
+  $(".navbar-toggler").click(function () {
+    if (window.pageYOffset < 300) {
+      if ($(this).attr("aria-expanded") == "false") {
+        $(".navbar").css({
+          background: "var(--box-bg-color)",
+          "border-bottom": "2px solid var(--main-color)",
+        });
+        $(".form-inline").css("backgroundColor", "var(--page-bg-color)");
+      } else {
+        $(".navbar").css({
+          background: "none",
+          "border-bottom": "none",
+        });
+        $(".form-inline").css("backgroundColor", "var(--box-bg-color)");
+      }
+    }
+  });
+</script>
+
+
+    <div class="jumbotron">
+
+  
+    <div class="background"
+      style="background: url('https://zhai23.github.io/media/images/custom-bannerBgImage.jpg') no-repeat; background-size: cover;">
+      <div class="mask"></div>
+    </div>
+    
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-1 d-none d-lg-block"></div>
+          <div class="col-lg-3 col-md-4 col-sm-4 d-none d-sm-block">
+            <div class="avatar"
+              style="background: url('https://zhai23.github.io/images/avatar.png?v=1719142869571');background-size: cover;"
+              alt="">
+              <div class="mask-dark"></div>
+            </div>
+          </div>
+          <div class="col-lg-8 col-md-8 col-sm-8">
+            <h1 class="display-4 title">
+              水杉-动画人
+            </h1>
+            <p class="lead context">
+              温故而知新
+            </p>
+            
+              <a class="btn btn-primary btn-lg" href="https://zhai23.github.io/" r='btn-hover' role="button"
+                id="about-me">主页</a>
+              
+          </div>
+        </div>
+      </div>
+</div>
+
+      <div class="container">
+
+        <h2 class="post-title title">
+          Maya 重拓扑插件 QuadRemesher 1.0.1汉化版
+        </h2>
+
+        <div class="post-info">
+          <span>
+            2022-01-30
+          </span>
+          <span>
+            119 字数
+          </span>
+          <br>
+          
+            <a href="https://zhai23.github.io/tag/tachWPntX/" class="post-tag">
+              # 建模
+            </a>
+            
+            <a href="https://zhai23.github.io/tag/bCt3dbfgHN/" class="post-tag">
+              # 拓扑
+            </a>
+            
+            <a href="https://zhai23.github.io/tag/z-tSV5c7q/" class="post-tag">
+              # maya插件
+            </a>
+            
+            <a href="https://zhai23.github.io/tag/FsDbOYeFF5/" class="post-tag">
+              # 汉化
+            </a>
+            
+        </div>
+
+
+        <div class="post-detail">
+
+          <article class="post">
+            <div class="post-content-wrapper">
+              <div class="row">
+                <div class="post-content  col-lg-9">
+                  <h1 id="maya-重拓扑插件-quadremesher-101汉化版">Maya 重拓扑插件 QuadRemesher 1.0.1汉化版</h1>
+<p>只需要轻轻一点，布线马上丝滑</p>
+<p>安装方式复杂了应该直接bat的</p>
+<p>加了会激励你的无聊大鹅 它会提醒你保存以及》》》激励》》非常的有趣</p>
+<p>大鹅是长按E S C关闭</p>
+<hr>
+<p>安装就是无脑点下一步安装</p>
+<p>桌面会多一张食用说明</p>
+<p>安完打开maya就有了</p>
+<p>下载地址https://www.wmiao.com/t-54361-1-1.html</p>
+<table>
+<thead>
+<tr>
+<th><img src="https://i0.hdslb.com/bfs/album/7b47dbe4aeff957e00354e94a5efa9f46d9fc268.jpg@1554w.webp" alt="psc" loading="lazy"></th>
+<th><img src="https://i0.hdslb.com/bfs/album/829fe6278bd35573f02c0b1936a64d1da0976fb8.png" alt="psc" loading="lazy"></th>
+</tr>
+</thead>
+</table>
+<figure data-type="image" tabindex="1"><img src="https://p.ananas.chaoxing.com/star3/origin/8a54782512fcc6b58dd586cdf92ee9b6.png" alt="" loading="lazy"></figure>
+
+                </div>
+
+
+                <div class="col-lg-3 d-none d-lg-block">
+                  
+
+                      <div class="toc-container">
+                        <ul class="markdownIt-TOC">
+<li><a href="#maya-%E9%87%8D%E6%8B%93%E6%89%91%E6%8F%92%E4%BB%B6-quadremesher-101%E6%B1%89%E5%8C%96%E7%89%88">Maya 重拓扑插件 QuadRemesher 1.0.1汉化版</a></li>
+</ul>
+
+                      </div>
+                </div>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <div class="post-footer">
+          
+            <div class="prev-post">
+              <a href="https://zhai23.github.io/ngSkinTools2/">
+                <h3 class="post-title title">
+                  上一篇 Maya 权重插件 ngSkinTools 2.0.38汉化版
+                </h3>
+              </a>
+            </div>
+            
+              
+                <div class="next-post">
+                  <a href="https://zhai23.github.io/py1/">
+                    <h3 class="post-title title">
+                      下一篇 用Python打开文件或程序
+                    </h3>
+                  </a>
+                </div>
+                
+        </div>
+
+        
+
+                        
+
+                            
+                              <head>
+                                  
+                                  <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+                                  
+                              </head>
+                              <body>
+                                  
+                                  <div id="vcomments"></div>
+                                  <script>
+                                      new Valine({
+                                          el: '#vcomments',
+                                          appId: 'dbe8ciEpeaNCPYf2wT2oLW5x-gzGzoHsz',
+                                          appKey: '6Wqx5DbBPTKPkk9SXc4Bl1zU'
+
+                                      })
+                                  </script>
+                              </body>
+
+
+      </div>
+      </div>
+
+      <div class="site-footer">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-7">
+        <div class="detial">
+        
+          <footer class="footer">
+	<section class="container">
+        <span id="hitokoto">少女祈祷中......</span>
+        <p>
+            <span class='left'>&copy; 2022                <a href="https://zhai23.github.io/">Create World</a>
+            <span class='right'>ブログ から <a href="https://zhai23.github.io/" target="_blank">水杉</a></span>
+        </p>
+	</section>
+</footer>
+
+<script src="https://v1.hitokoto.cn/?c=a&encode=js&select=%23hitokoto" defer></script> 
+        </div>
+      </div>
+      <div class="col-lg-5">
+        <div class="about-me">
+          <div class="avator"
+            style="background: url('https://zhai23.github.io/images/avatar.png?v=1719142869571');background-size: cover;">
+            <div class="mask-dark"></div>
+          </div>
+          <div class="social-link">
+            
+              
+                <a href="https://github.com/zhai23" class="clearfix" target="_blank">
+                  <i class="ri-github-line"></i>
+                </a>
+                
+                  
+              
+                  
+              
+                <a href="https://weibo.com/u/6362260348" class="clearfix" target="_blank">
+                  <i class="ri-weibo-line"></i>
+                </a>
+                
+                  
+              
+                <a href="https://www.zhihu.com/people/bai-hua-liao-luan-63-49" class="clearfix" target="_blank">
+                  <i class="ri-zhihu-line"></i>
+                </a>
+                
+                  
+              
+                  
+              
+                <a href="http://r.photo.store.qq.com/psc?/V53kS8yY0ifRfN2IThsd4RqWjG1aTr4p/ruAMsa53pVQWN7FLK88i5stkxOuJIxHqesstYiOUMbwJQs.IFQJSYCfnumDre.N7jl4N.LdF2jA1yRAI0bdLQBG89Ssy.AuFLpZoEz1RsQI!/r" class="clearfix" target="_blank">
+                  <i class="ri-wechat-line"></i>
+                </a>
+                
+                  
+              
+                <a href="https://qm.qq.com/cgi-bin/qm/qr?k=5YBJYWroZcJU8GXcYDc2bW7Cx-bwSvig&amp;noverify=0" class="clearfix" target="_blank">
+                  <i class="ri-qq-line"></i>
+                </a>
+                
+                  
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
+
+
+          <script>
+            hljs.initHighlightingOnLoad()
+
+            let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+            // This should probably be throttled.
+            // Especially because it triggers during smooth scrolling.
+            // https://lodash.com/docs/4.17.10#throttle
+            // You could do like...
+            // window.addEventListener("scroll", () => {
+            //    _.throttle(doThatStuff, 100);
+            // });
+            // Only not doing it here to keep this Pen dependency-free.
+
+
+            window.addEventListener("scroll", event => {
+              let fromTop = window.scrollY;
+
+              mainNavLinks.forEach((link, index) => {
+                let section = document.getElementById(decodeURI(link.hash).substring(1));
+                let nextSection = null
+                var $link = $(link)
+
+                if (mainNavLinks[index + 1]) {
+                  nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+                }
+                if (section.offsetTop <= fromTop) {
+                  if (nextSection) {
+                    if (nextSection.offsetTop > fromTop) {
+                      $link.addClass('current')
+                    } else {
+                      $link.removeClass('current')
+                    }
+                  } else {
+                    $link.addClass('current')
+                  }
+                } else {
+                  $link.removeClass('current')
+                }
+              });
+            });
+
+
+          </script>
+</body>
+
+</html>
